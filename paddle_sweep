@@ -84,90 +84,90 @@ void draw() {
   if(timer<0)
   {
     timer = timer + 60;
-  if(timer == 59)
-  {
-    zeroonce = true;
-  }
+      if(timer == 59)
+      {
+        zeroonce = true;
+      }
   }
 
   if(zeroonce)
     {      
-    timer = timer + 60;
-    if(timer == 119)
-    {
-      timer = timer - 60;
-    }
-    if(timer == 118)
-    {
-     zerotwice = true;
-    }
+      timer = timer + 60;
+        if(timer == 119)
+        {
+          timer = timer - 60;
+        }
+        if(timer == 118)
+        {
+          zerotwice = true;
+        }
     }
   if(zerotwice)
   {
 
     timer = timer + 60;
-    if(timer == 178)
-    {
-      timer = timer - 60;
-    }
-    if(timer == 177)
-    {
-       zerothrice = true;
-    }
+      if(timer == 178)
+      {
+         timer = timer - 60;
+      }
+      if(timer == 177)
+      {
+         zerothrice = true;
+      }
   }
  if (zerothrice)
   {
     timer = timer + 60;
-    if(timer == 237)
-    {
-      timer = timer - 60;
-    }
-    if(timer == 236)
-    {
-      zerofour = true;
-    }
+      if(timer == 237)
+      {
+        timer = timer - 60;
+      }
+      if(timer == 236)
+      {
+        zerofour = true;
+      }
     
   }
   
   if (zerofour)
   {
     timer = timer + 60;
-    if(timer == 296)
-    {
-      timer = timer - 60;
-    }
-    if(timer == 295)
-    {
-      zerofive = true;
-    }
+      if(timer == 296)
+      {
+        timer = timer - 60;
+      }
+      if(timer == 295)
+      {
+        zerofive = true;
+      }
     
   }
   
   if (zerofive)
   {
     timer = timer + 60;
-    if(timer == 355)
-    {
-      timer = timer - 60;
-    }
-    if(timer == 354)
-    {
-      zerosix = true;
-    }
+      if(timer == 355)
+      {
+        timer = timer - 60;
+      }
+      if(timer == 354)
+      {
+        zerosix = true;
+      }
     
   }
   
   if (zerosix)
   {
     timer = timer + 60;
-    if(timer == 414)
-    {
-      timer = timer - 60;
-    }
-    if(timer == 413)
-    {
-      zerosix = true;
-    }    
+      if(timer == 414)
+      {
+        timer = timer - 60;
+      }
+      if(timer == 413)
+      {
+        zerosix = true;
+      }    
   }
 
   
@@ -181,78 +181,90 @@ void draw() {
 
   
   // Bounce off edges
-  if ((location.x > width - 60) || (location.x < 60)) {
+  if ((location.x > width - 60) || (location.x < 60)) 
+  {
     velocity.x = velocity.x * -1;
   }
-  if (location.y > height - 20 || (location.y < 20)) {
+  if (location.y > height - 20 || (location.y < 20)) 
+  {
     velocity.y = velocity.y * -1; 
   }
-  if ((location1.x > width - 60) || (location1.x < 60)) {
+  if ((location1.x > width - 60) || (location1.x < 60)) 
+  {
     velocity1.x = velocity1.x * -1; 
   }
-  if (location1.y > height - 15 || (location1.y < 15)) {
+  if (location1.y > height - 15 || (location1.y < 15)) 
+  {
     velocity1.y = velocity1.y * -1; 
   }
-  if ((location2.x > width - 60) || (location2.x < 60)) {
+  if ((location2.x > width - 60) || (location2.x < 60)) 
+  {
     velocity2.x = velocity2.x * -1; 
   }
-  if (location2.y > height - 20 || (location2.y < 20)) {
+  if (location2.y > height - 20 || (location2.y < 20)) 
+  {
     velocity2.y = velocity2.y * -1; 
   }
   //Logic for paddle contact
-  if(recent_hit){
-  if ((y - 5  <= location.y ) && (y + 65 >= location.y) && (x - 5 <= location.x) && (x + 15 >= location.x)) {
+  if(recent_hit)
+  {
+  if ((y - 5  <= location.y ) && (y + 65 >= location.y) && (x - 5 <= location.x) && (x + 15 >= location.x)) 
+     {
       velocity.x = velocity.x * -1;
-//    velocity.y = velocity.y * -1; Bounce the balls of the paddle in a completely opposite direction by removing commenting here.
-      score+=4;
-      
       print("\nScore is : " + score);
       recent_hit = false;
       paddle.play();
-
-  }
+     }
   }
   else
   {
     recent_hit = true;
   }
-  if(recent_hit1){
-  if ((y - 5  <= location1.y ) && (y + 65 >= location1.y) && (x - 5 <= location1.x) && (x + 15 >= location1.x)) {
-    velocity1.x = velocity1.x * -1;
-//    velocity1.y = velocity1.y * -1;
+  if(recent_hit1)
+  {
+    if ((y - 5  <= location1.y ) && (y + 65 >= location1.y) && (x - 5 <= location1.x) && (x + 15 >= location1.x)) 
+     {
+      velocity1.x = velocity1.x * -1;
       score+=3;
       print("\nScore is : " + score);
       recent_hit1 = false;
       paddle.play();
       
-  }    
+     }    
   }
   else
   {
     recent_hit1 = true;
   }
-  if(recent_hit2){
-  if ((y - 5  <= location2.y ) && (y + 65 >= location2.y) && (x - 5 <= location2.x) && (x + 15 >= location2.x)) {
-    velocity2.x = velocity2.x * -1;
+  if(recent_hit2)
+  {
+    if ((y - 5  <= location2.y ) && (y + 65 >= location2.y) && (x - 5 <= location2.x) && (x + 15 >= location2.x)) 
+    {
+      velocity2.x = velocity2.x * -1;
 //    velocity2.y = velocity2.y * -1;
       score+=2;
       print("\nScore is : " + score);
       recent_hit2 = false;
-    paddle.play();
+      paddle.play();
       
-  }
+    }
   }
   else
   {
     recent_hit2 = true;
   }
-  if ((location3.x > width - 60) || (location3.x < 60)) {
+  if ((location3.x > width - 60) || (location3.x < 60)) 
+  {
     velocity3.x = velocity3.x * -1; 
   }
-  if (location3.y > height - 20 || (location3.y < 20)) {
-    velocity3.y = velocity3.y * -1; }
-  if(recent_hit3 == 2){
-  if ((y - 5  <= location3.y ) && (y + 65 >= location3.y) && (x - 5 <= location3.x) && (x + 20 >= location3.x)) {
+  if (location3.y > height - 20 || (location3.y < 20)) 
+  {
+    velocity3.y = velocity3.y * -1; 
+  }
+  if(recent_hit3 == 2)
+  {
+    if ((y - 5  <= location3.y ) && (y + 65 >= location3.y) && (x - 5 <= location3.x) && (x + 20 >= location3.x)) 
+    {
       velocity3.x = velocity3.x * -1;
 //    velocity3.y = velocity3.y * -1;
       score+=1;
@@ -260,15 +272,15 @@ void draw() {
       recent_hit3 = 0;
       paddle.play();
       
-  }
+    }
   }
   else
   {
     recent_hit3 += 1;
     if(recent_hit3 > 2)
-   { 
+    { 
     recent_hit3 = 2;
-  }
+    }
   }
   
   image( a, 0, 0 );
@@ -279,7 +291,7 @@ void draw() {
     {
       y = 20;
     }
-  y=y-8;
+    y=y-8;
   }
   if (keydown)
   {  
@@ -287,7 +299,7 @@ void draw() {
     {
       y = y_range - 75;
     }
-  y=y+8;
+    y=y+8;
   }
   if (keyright) 
   {
@@ -344,23 +356,27 @@ void draw() {
 //  zeroonce = true;
 }
 
-void gameover(){
-
+void gameover()
+{
   timer = 0;
   gameover = true;
   noLoop();
   
 }
-void keyPressed() {
-  if (key == CODED) {
+void keyPressed() 
+{
+  if (key == CODED) 
+  {
     if (keyCode == UP) keyup = true; 
     if (keyCode == DOWN) keydown = true; 
     if (keyCode == LEFT) keyleft = true; 
     if (keyCode == RIGHT) keyright = true; 
   }
 } 
-void keyReleased() {
-  if (key == CODED) {
+void keyReleased() 
+{
+  if (key == CODED) 
+  {
     if (keyCode == UP) keyup = false; 
     if (keyCode == DOWN) keydown = false; 
     if (keyCode == LEFT) keyleft = false; 
@@ -368,11 +384,13 @@ void keyReleased() {
   }
 }
 
-void mouseClicked(){
-if(gameover){
-score = 0;
-timer = 0;
-s = 0;
-setup();
-}
+void mouseClicked()
+{
+   if(gameover)
+    {
+      score = 0;
+      timer = 0;
+      s = 0;
+      setup();
+    }
 }

@@ -19,6 +19,7 @@ boolean keyup = false;
 boolean keyright = false;
 boolean keyleft = false;
 boolean keydown = false;
+//variables with number subscripts are meant to represent different balls.
 PVector location;  // Location of shape
 PVector velocity;  // Velocity of shape
 PVector location1;  // Location of shape
@@ -69,15 +70,10 @@ void setup() {
   y = 220;
   s = second();
   Maxim = new Maxim(this);
-//  background = Maxim.loadFile("background.wav");
   paddle = Maxim.loadFile("paddle1.wav");
-//  background.setLooping(true);
-//  background.volume(0.6);
-// background.cue(0);
   paddle.setLooping(false);
   paddle.volume(1.0);
   loop();
- // p = 
 }
 
 void draw() {
@@ -189,8 +185,6 @@ void draw() {
     velocity.x = velocity.x * -1;
   }
   if (location.y > height - 20 || (location.y < 20)) {
-    // We're reducing velocity ever so slightly 
-    // when it hits the bottom of the window
     velocity.y = velocity.y * -1; 
   }
   if ((location1.x > width - 60) || (location1.x < 60)) {
@@ -205,14 +199,13 @@ void draw() {
     velocity2.x = velocity2.x * -1; 
   }
   if (location2.y > height - 20 || (location2.y < 20)) {
-    // We're reducing velocity ever so slightly 
-    // when it hits the bottom of the window
     velocity2.y = velocity2.y * -1; 
   }
+  //Logic for paddle contact
   if(recent_hit){
   if ((y - 5  <= location.y ) && (y + 65 >= location.y) && (x - 5 <= location.x) && (x + 15 >= location.x)) {
     velocity.x = velocity.x * -1;
-//    velocity.y = velocity.y * -1;
+//    velocity.y = velocity.y * -1; Bounce the balls of the paddle in a completely opposite direction by removing commenting here.
       score+=4;
       
       print("\nScore is : " + score);

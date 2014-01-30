@@ -20,22 +20,16 @@ boolean keyright = false;
 boolean keyleft = false;
 boolean keydown = false;
 //variables with number subscripts are meant to represent different balls.
-PVector location;  // Location of shape
-PVector velocity;  // Velocity of shape
-PVector location1;  // Location of shape
-PVector velocity1;  // Velocity of shape
-PVector location2;  // Location of shape
-PVector velocity2;  // Velocity of shape
-PVector location3;  // Location of shape
-PVector velocity3;  // Velocity of shape
-boolean recent_hit = true;
+PVector location,velocity,location1, velocity1,location2, velocity2, location3, velocity3;  //Variables for the location and velocities of of shape
+
+boolean recent_hit = true; //Score keeping variables
 boolean recent_hit1 = true;
 boolean recent_hit2 = true;
 int recent_hit3 = 2;
-public int timer;
+public int timer; //timer for the score keeping
 int s;
 
-boolean zeroonce = false;
+boolean zeroonce = false; //flags to reflect timer overflow
 boolean zerotwice = false;
 boolean zerothrice = false;
 boolean zerofour = false;
@@ -43,7 +37,7 @@ boolean zerofive = false;
 boolean zerosix = false;
 boolean newgame = false;
 boolean gameover = false;
-Maxim Maxim;
+Maxim Maxim; //Audio APIs
 AudioPlayer paddle;
 
 void setup() {
@@ -309,6 +303,17 @@ void draw() {
   {
 
   }
+  drawGame();
+  scoreGame();
+  text("Hit-Limit", 60, 50);
+  text(score,90,100);
+  
+  text(timer,700,100);
+//  zeroonce = true;
+}
+
+void drawGame()
+{
   stroke(255);
   strokeWeight(2);
   fill(255,255,0,227);
@@ -335,6 +340,10 @@ void draw() {
   rect(x,y,8,60);
   fill(255,255,255,255);
   textSize(40);
+}
+
+void scoreGame()
+{
   if(score >= 100)
   {
   textSize(40);
@@ -348,12 +357,6 @@ void draw() {
   gameover = true;
   gameover();
   }
-    
-  text("Hit-Limit", 60, 50);
-  text(score,90,100);
-  
-  text(timer,700,100);
-//  zeroonce = true;
 }
 
 void gameover()

@@ -1,5 +1,10 @@
-
-
+//Audio Library if a soundtrack needs to be added
+//import ddf.minim.spi.*;
+//import ddf.minim.signals.*;
+//import ddf.minim.*;
+//import ddf.minim.analysis.*;
+//import ddf.minim.ugens.*;
+//import ddf.minim.effects.*;
 
 PImage a;
 int l, m, x, y, p, q,score;
@@ -11,7 +16,7 @@ boolean keyright = false;
 boolean keyleft = false;
 boolean keydown = false;
 //variables with number subscripts are meant to represent different balls.
-PVector location,velocity,location1, velocity1,location2, velocity2, location3, velocity3;  //Variables for the location and velocities of of shape
+PVector location,velocity,location1, velocity1,location2, velocity2, location3, velocity3; //Variables for the location and velocities of of shape
 
 boolean recent_hit = true; //Score keeping variables
 boolean recent_hit1 = true;
@@ -22,50 +27,45 @@ int s;
 
 boolean zeroonce = false; //flags to reflect timer overflow
 boolean zerotwice = false;
-boolean zerothrice = false;
-boolean zerofour = false;
-boolean zerofive = false;
-boolean zerosix = false;
+
 boolean newgame = false;
 boolean gameover = false;
-Maxim Maxim; //Audio APIs
-AudioPlayer paddle;
+//Minim minim; //Audio APIs
+//AudioPlayer paddle;
 
 void setup() {
+
+  PFont johnFont;
+  johnFont = loadFont("PalatinoLinotype-Italic-48.vlw");
+  textFont(johnFont);
   gameover = false;
   timer = 0;
   zeroonce = false;
   zerotwice = false;
-  zerothrice = false;
-  zerofour = false;
-  zerofive = false;
-  zerosix = false;
+
   size(800,600);
   smooth();
   location = new PVector(200,200);
-  velocity = new PVector(13,13);
+  velocity = new PVector(33,33);
   location1 = new PVector(600,200);
-  velocity1 = new PVector(11,11);
+  velocity1 = new PVector(29,29);
   location2 = new PVector(200,400);
-  velocity2 = new PVector(10,10);
+  velocity2 = new PVector(25,25);
   location3 = new PVector(600,400);
-  velocity3 = new PVector(9,9);
-  a = loadImage("space.jpg");
+  velocity3 = new PVector(21,21);
+  //a = loadImage("space.jpg");
   x = 396;
   y = 220;
-  s = second();
-  Maxim = new Maxim(this);
-  paddle = Maxim.loadFile("paddle1.wav");
-  paddle.setLooping(false);
-  paddle.volume(1.0);
+  s = second();  
+  //minim = new Minim(this);
+  //paddle = minim.loadFile("Storm.mp3");
   loop();
 }
 
 void draw() {
-
   gameover = false;
   timer = second() - s;
-
+  //paddle.play();
   if(timer<0)
   {
     timer = timer + 60;
@@ -76,87 +76,15 @@ void draw() {
   }
 
   if(zeroonce)
-    {      
+    {
       timer = timer + 60;
-        if(timer == 119)
-        {
-          timer = timer - 60;
-        }
-        if(timer == 118)
-        {
-          zerotwice = true;
-        }
+        //if(timer == 119)
+        //{
+        //  timer = timer - 60;
+       // }
     }
-  if(zerotwice)
-  {
 
-    timer = timer + 60;
-      if(timer == 178)
-      {
-         timer = timer - 60;
-      }
-      if(timer == 177)
-      {
-         zerothrice = true;
-      }
-  }
- if (zerothrice)
-  {
-    timer = timer + 60;
-      if(timer == 237)
-      {
-        timer = timer - 60;
-      }
-      if(timer == 236)
-      {
-        zerofour = true;
-      }
-    
-  }
-  
-  if (zerofour)
-  {
-    timer = timer + 60;
-      if(timer == 296)
-      {
-        timer = timer - 60;
-      }
-      if(timer == 295)
-      {
-        zerofive = true;
-      }
-    
-  }
-  
-  if (zerofive)
-  {
-    timer = timer + 60;
-      if(timer == 355)
-      {
-        timer = timer - 60;
-      }
-      if(timer == 354)
-      {
-        zerosix = true;
-      }
-    
-  }
-  
-  if (zerosix)
-  {
-    timer = timer + 60;
-      if(timer == 414)
-      {
-        timer = timer - 60;
-      }
-      if(timer == 413)
-      {
-        zerosix = true;
-      }    
-  }
-
-  
-  background(226);
+  background(0);
   scoreset = true;
   // Add velocity to the location.
   location.add(velocity);
@@ -166,141 +94,151 @@ void draw() {
 
   
   // Bounce off edges
-  if ((location.x > width - 60) || (location.x < 60)) 
+  if ((location.x > width - 60) || (location.x < 60))
   {
     velocity.x = velocity.x * -1;
   }
-  if (location.y > height - 20 || (location.y < 20)) 
+  if (location.y > height - 20 || (location.y < 20))
   {
-    velocity.y = velocity.y * -1; 
+    velocity.y = velocity.y * -1;
   }
-  if ((location1.x > width - 60) || (location1.x < 60)) 
+  if ((location1.x > width - 60) || (location1.x < 60))
   {
-    velocity1.x = velocity1.x * -1; 
+    velocity1.x = velocity1.x * -1;
   }
-  if (location1.y > height - 15 || (location1.y < 15)) 
+  if (location1.y > height - 15 || (location1.y < 15))
   {
-    velocity1.y = velocity1.y * -1; 
+    velocity1.y = velocity1.y * -1;
   }
-  if ((location2.x > width - 60) || (location2.x < 60)) 
+  if ((location2.x > width - 60) || (location2.x < 60))
   {
-    velocity2.x = velocity2.x * -1; 
+    velocity2.x = velocity2.x * -1;
   }
-  if (location2.y > height - 20 || (location2.y < 20)) 
+  if (location2.y > height - 20 || (location2.y < 20))
   {
-    velocity2.y = velocity2.y * -1; 
+    velocity2.y = velocity2.y * -1;
   }
+
   //Logic for paddle contact
+
   if(recent_hit)
   {
-  if ((y - 5  <= location.y ) && (y + 65 >= location.y) && (x - 5 <= location.x) && (x + 15 >= location.x)) 
+  if ((y - 5 <= location.y ) && (y + 65 >= location.y) && (x - 5 <= location.x) && (x + 15 >= location.x))
      {
       velocity.x = velocity.x * -1;
+      score+=4;
       print("\nScore is : " + score);
       recent_hit = false;
-      paddle.play();
+      
      }
   }
+
   else
   {
     recent_hit = true;
   }
+
   if(recent_hit1)
   {
-    if ((y - 5  <= location1.y ) && (y + 65 >= location1.y) && (x - 5 <= location1.x) && (x + 15 >= location1.x)) 
+    if ((y - 5 <= location1.y ) && (y + 65 >= location1.y) && (x - 5 <= location1.x) && (x + 15 >= location1.x))
      {
       velocity1.x = velocity1.x * -1;
       score+=3;
       print("\nScore is : " + score);
       recent_hit1 = false;
-      paddle.play();
       
-     }    
+     }
   }
+
   else
   {
     recent_hit1 = true;
   }
   if(recent_hit2)
   {
-    if ((y - 5  <= location2.y ) && (y + 65 >= location2.y) && (x - 5 <= location2.x) && (x + 15 >= location2.x)) 
+    if ((y - 5 <= location2.y ) && (y + 65 >= location2.y) && (x - 5 <= location2.x) && (x + 15 >= location2.x))
     {
       velocity2.x = velocity2.x * -1;
-//    velocity2.y = velocity2.y * -1;
+// velocity2.y = velocity2.y * -1;
       score+=2;
       print("\nScore is : " + score);
       recent_hit2 = false;
-      paddle.play();
       
     }
   }
+
   else
   {
     recent_hit2 = true;
   }
-  if ((location3.x > width - 60) || (location3.x < 60)) 
+
+  if ((location3.x > width - 60) || (location3.x < 60))
   {
-    velocity3.x = velocity3.x * -1; 
+    velocity3.x = velocity3.x * -1;
   }
-  if (location3.y > height - 20 || (location3.y < 20)) 
+
+  if (location3.y > height - 20 || (location3.y < 20))
   {
-    velocity3.y = velocity3.y * -1; 
+    velocity3.y = velocity3.y * -1;
   }
+
   if(recent_hit3 == 2)
   {
-    if ((y - 5  <= location3.y ) && (y + 65 >= location3.y) && (x - 5 <= location3.x) && (x + 20 >= location3.x)) 
+    if ((y - 5 <= location3.y ) && (y + 65 >= location3.y) && (x - 5 <= location3.x) && (x + 20 >= location3.x))
     {
       velocity3.x = velocity3.x * -1;
-//    velocity3.y = velocity3.y * -1;
+// velocity3.y = velocity3.y * -1;
       score+=1;
       print("\nScore is : " + score);
       recent_hit3 = 0;
-      paddle.play();
       
     }
   }
+
   else
   {
     recent_hit3 += 1;
     if(recent_hit3 > 2)
-    { 
+    {
     recent_hit3 = 2;
     }
   }
   
-  image( a, 0, 0 );
+  //image( a, 0, 0 );
 
-  if (keyup) 
+  if (keyup)
   {
     if (y<20)
     {
       y = 20;
     }
-    y=y-8;
+    y=y-20;
   }
   if (keydown)
-  {  
+  {
      if (y>y_range - 75)
     {
       y = y_range - 75;
     }
-    y=y+8;
+    y=y+20;
   }
-  if (keyright) 
+  if (keyright)
   {
 
   }
-  if (keyleft) 
+  if (keyleft)
   {
 
   }
+
   drawGame();
   scoreGame();
-  text("Hit-Limit", 60, 50);
+  text("Score", 60, 50);
   text(score,90,100);
-  
+  text("Timer", 670, 50);
   text(timer,700,100);
-//  zeroonce = true;
+
+// zeroonce = true;
 }
 
 void drawGame()
@@ -326,24 +264,23 @@ void drawGame()
   fill(0,0,0);
   rect(750,0,2,600);
   fill(0,0,0,10);
-  ellipse(400, 300, 100, 100);
+  //ellipse(400, 300, 100, 100);
   fill(0,0,0,255);
-  rect(x,y,8,60);
+  rect(x-1,y-7.5,10,75);
   fill(255,255,255,255);
   textSize(40);
 }
 
 void scoreGame()
 {
-  if(score >= 100)
+  if(timer == 100)
   {
   textSize(40);
   text("Game Over!", 286, 200);
   textSize(40);
-  text("Click on the mouse to score again", 80, 500);
-  text("Your paddle lasted ",100, 400); 
-  text(timer,475, 400);
-  text("Seconds",555, 400);
+  text("Click on the mouse to score again", 150, 500);
+  text("Your Score is  ",230, 400);
+  text(score,475, 400);
   timer = 0;
   gameover = true;
   gameover();
@@ -354,26 +291,29 @@ void gameover()
 {
   timer = 0;
   gameover = true;
+  //minim.stop();
   noLoop();
   
 }
-void keyPressed() 
+
+void keyPressed()
 {
-  if (key == CODED) 
+  if (key == CODED)
   {
-    if (keyCode == UP) keyup = true; 
-    if (keyCode == DOWN) keydown = true; 
-    if (keyCode == LEFT) keyleft = true; 
-    if (keyCode == RIGHT) keyright = true; 
+    if (keyCode == UP) keyup = true;
+    if (keyCode == DOWN) keydown = true;
+    if (keyCode == LEFT) keyleft = true;
+    if (keyCode == RIGHT) keyright = true;
   }
-} 
-void keyReleased() 
+}
+
+void keyReleased()
 {
-  if (key == CODED) 
+  if (key == CODED)
   {
-    if (keyCode == UP) keyup = false; 
-    if (keyCode == DOWN) keydown = false; 
-    if (keyCode == LEFT) keyleft = false; 
+    if (keyCode == UP) keyup = false;
+    if (keyCode == DOWN) keydown = false;
+    if (keyCode == LEFT) keyleft = false;
     if (keyCode == RIGHT) keyright = false;
   }
 }
@@ -385,6 +325,8 @@ void mouseClicked()
       score = 0;
       timer = 0;
       s = 0;
+      //paddle.close();
+      //paddle.play();
       setup();
     }
 }

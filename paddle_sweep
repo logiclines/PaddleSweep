@@ -15,9 +15,9 @@ boolean keyup = false;
 boolean keyright = false;
 boolean keyleft = false;
 boolean keydown = false;
-//variables with number subscripts are meant to represent different balls.
+//variables with number subscripts are meant to represent different projectiles.
 PVector location,velocity,location1, velocity1,location2, velocity2, location3, velocity3; //Variables for the location and velocities of of shape
-
+//variables to keep track of velocity and location of the projectiles
 boolean recent_hit = true; //Score keeping variables
 boolean recent_hit1 = true;
 boolean recent_hit2 = true;
@@ -66,6 +66,7 @@ void draw() {
   gameover = false;
   timer = second() - s;
   //paddle.play();
+  //timer to keep track of score
   if(timer<0)
   {
     timer = timer + 60;
@@ -246,6 +247,8 @@ void drawGame()
   stroke(255);
   strokeWeight(2);
   fill(255,255,0,227);
+  
+  //Draw the elliptical projectiles
   ellipse(location.x,location.y,20,20);
   fill(255,0,255,227);
   ellipse(location1.x,location1.y,20,20);
@@ -254,6 +257,8 @@ void drawGame()
   fill(255,0,0,227);
   ellipse(location3.x,location3.y,20,20);
   fill(0,0,0,210);
+  
+  //Draw the game board
   rect(0,0,50,600);
   fill(0,0,0,210);
   rect(750,0,50,600);
@@ -266,11 +271,14 @@ void drawGame()
   fill(0,0,0,10);
   //ellipse(400, 300, 100, 100);
   fill(0,0,0,255);
+  
+  //Draw paddle
   rect(x-1,y-7.5,10,75);
   fill(255,255,255,255);
   textSize(40);
 }
 
+//Display score message
 void scoreGame()
 {
   if(timer == 100)
@@ -287,15 +295,16 @@ void scoreGame()
   }
 }
 
+//Stop game 
 void gameover()
 {
   timer = 0;
   gameover = true;
   //minim.stop();
   noLoop();
-  
 }
 
+//move paddle
 void keyPressed()
 {
   if (key == CODED)
@@ -318,6 +327,7 @@ void keyReleased()
   }
 }
 
+//restart game and refresh timer and score
 void mouseClicked()
 {
    if(gameover)
